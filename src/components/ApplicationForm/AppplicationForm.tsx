@@ -1,38 +1,57 @@
 "use client";
+import { useState, useCallback } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import {useMutation} from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
+import { useDropzone } from "react-dropzone";
 import { createOrder } from "@/server/CreateOrder";
+import { Upload, X } from "lucide-react";
 
 type ApplicationFormData = {
     name: string;
     phone: string;
     modelOfWatch: string;
     problemDescription: string;
+    file?: File | null;
 }
 
 const ApplicationForm = () => {
-    const { 
-        register, 
-        handleSubmit, 
-        formState: { errors },
-        reset,
-    } = useForm<ApplicationFormData>();
+    const [filePreview, setFilePreview] = useState<string | null>(null);
+    const { register, handleSubmit, formState: { errors }, setValue, watch, reset } = useForm<ApplicationFormData>();
 
     const { mutate, isPending } = useMutation({
-        mutationFn: createOrder, // Передаем функцию как есть
-        onSuccess: (serverData) => {
-            console.log("Успех! Данные от сервера:", serverData);
+        mutationFn: createOrder,
+        onSuccess: () => {
             alert("Заявка принята!");
+            setFilePreview(null);
             reset();
         },
-        onError: (error: any) => {
-            alert(`Ошибка: ${error.message}`);
+        onError: (error: any) => alert(`Ошибка: ${error.message}`)
+    });
+
+    // Логика Drag and Drop
+    const onDrop = useCallback((acceptedFiles: File[]) => {
+        const file = acceptedFiles[0];
+        if (file) {
+            setValue("file", file);
+            setFilePreview(URL.createObjectURL(file));
         }
+    }, [setValue]);
+
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({
+        onDrop,
+        accept: { 'image/*': [] },
+        multiple: false
     });
 
     const onSubmit: SubmitHandler<ApplicationFormData> = (data) => {
-        console.log("Form Data:", data);
-        mutate(data);
+        const formData = new FormData();
+        formData.append("name", data.name);
+        formData.append("phone", data.phone);
+        formData.append("modelOfWatch", data.modelOfWatch);
+        formData.append("problemDescription", data.problemDescription);
+        if (data.file) formData.append("file", data.file);
+
+        mutate(formData as any); // Отправляем как FormData
     }
 
     return (
@@ -40,50 +59,44 @@ const ApplicationForm = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                     <label className="block text-[10px] uppercase font-bold text-slate-500 mb-2 tracking-widest">Ваше имя</label>
-                    <input 
-                        {...register("name", { required: true, minLength: 2 })} 
-                        type="text" 
-                        disabled={isPending}
-                        className="w-full bg-slate-800 border border-slate-700 text-white px-4 py-3 focus:outline-none focus:border-amber-600 transition-colors" 
-                        placeholder="Константин" 
-                    />
-                    {errors.name && <p className="text-red-500 text-xs mt-1">Пожалуйста, введите ваше имя (минимум 2 символа).</p>}
+                    <input {...register("name", { required: true })} className="w-full bg-slate-800 border border-slate-700 text-white px-4 py-3 focus:outline-none focus:border-amber-600" />
                 </div>
                 <div>
                     <label className="block text-[10px] uppercase font-bold text-slate-500 mb-2 tracking-widest">Телефон</label>
-                    <input 
-                        {...register("phone", { required: true, pattern: /^\+380\d{9}$/ })} 
-                        type="tel" 
-                        disabled={isPending}
-                        className="w-full bg-slate-800 border border-slate-700 text-white px-4 py-3 focus:outline-none focus:border-amber-600 transition-colors" 
-                        placeholder="+380" 
-                    />
-                    {errors.phone && <p className="text-red-500 text-xs mt-1">Пожалуйста, введите корректный номер телефона в формате +380XXXXXXXXX.</p>}
+                    <input {...register("phone", { required: true })} className="w-full bg-slate-800 border border-slate-700 text-white px-4 py-3 focus:outline-none focus:border-amber-600" />
                 </div>
             </div>
+
+            {/* Зона Drag and Drop */}
+            <div 
+                {...getRootProps()} 
+                className={`border-2 border-dashed p-8 text-center cursor-pointer transition-all ${isDragActive ? 'border-amber-500 bg-amber-500/10' : 'border-slate-700 bg-slate-800/50 hover:border-slate-600'}`}
+            >
+                <input {...getInputProps()} />
+                {filePreview ? (
+                    <div className="relative inline-block">
+                        <img src={filePreview} alt="Preview" className="h-32 w-32 object-cover rounded border border-slate-700" />
+                        <button type="button" onClick={(e) => { e.stopPropagation(); setFilePreview(null); setValue("file", null); }} className="absolute -top-2 -right-2 bg-red-500 rounded-full p-1"><X size={12} /></button>
+                    </div>
+                ) : (
+                    <div className="flex flex-col items-center gap-2">
+                        <Upload className="text-slate-500" />
+                        <p className="text-xs text-slate-400 uppercase tracking-widest">Перетащите фото часов или кликните</p>
+                    </div>
+                )}
+            </div>
+
             <div>
                 <label className="block text-[10px] uppercase font-bold text-slate-500 mb-2 tracking-widest">Модель часов</label>
-                <input 
-                    {...register("modelOfWatch", { required: true, minLength: 3 })} 
-                    type="text" 
-                    disabled={isPending}
-                    className="w-full bg-slate-800 border border-slate-700 text-white px-4 py-3 focus:outline-none focus:border-amber-600 transition-colors" 
-                    placeholder="Rolex Daytona 116500LN" 
-                />
-                {errors.modelOfWatch && <p className="text-red-500 text-xs mt-1">Пожалуйста, введите модель часов (минимум 3 символа).</p>}
+                <input {...register("modelOfWatch", { required: true })} className="w-full bg-slate-800 border border-slate-700 text-white px-4 py-3 focus:outline-none focus:border-amber-600" />
             </div>
+
             <div>
                 <label className="block text-[10px] uppercase font-bold text-slate-500 mb-2 tracking-widest">Описание проблемы</label>
-                <textarea 
-                    {...register("problemDescription", { required: true, minLength: 10 })} 
-                    rows={4} 
-                    disabled={isPending}
-                    className="w-full bg-slate-800 border border-slate-700 text-white px-4 py-3 focus:outline-none focus:border-amber-600 transition-colors" 
-                    placeholder="Часы отстают на 30 секунд в сутки..."
-                ></textarea>
-                {errors.problemDescription && <p className="text-red-500 text-xs mt-1">Пожалуйста, опишите проблему (минимум 10 символов).</p>}
+                <textarea {...register("problemDescription", { required: true })} rows={4} className="w-full bg-slate-800 border border-slate-700 text-white px-4 py-3 focus:outline-none focus:border-amber-600"></textarea>
             </div>
-            <button type="submit" className="w-full bg-amber-600 hover:bg-amber-700 text-white py-4 font-bold uppercase tracking-widest transition-all">
+
+            <button type="submit" disabled={isPending} className="w-full bg-amber-600 hover:bg-amber-700 text-white py-4 font-bold uppercase tracking-widest transition-all disabled:opacity-50">
                 {isPending ? "Отправляем..." : "Отправить заявку"}
             </button>
         </form>

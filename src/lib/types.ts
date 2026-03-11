@@ -6,6 +6,8 @@ export interface Service {
     price: string;
     icon: string;
     image: string;
+    duration: string;
+    features: string[];
   }
   
   export interface PortfolioCase {

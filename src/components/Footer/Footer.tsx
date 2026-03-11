@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Instagram, Facebook, MapPin, Phone, Clock } from "lucide-react";
+import { Instagram, Facebook, MapPin, Phone, Clock, Github } from "lucide-react";
 
 const Footer = () => (
     <footer className="bg-slate-950 border-t border-slate-800 pt-16 pb-8">
@@ -20,6 +20,9 @@ const Footer = () => (
               <Link href="#" className="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center hover:bg-amber-600 hover:border-amber-600 transition-all">
                 <Facebook color="white" size={18} />
               </Link>
+              <Link className="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center hover:bg-amber-600 hover:border-amber-600 transition-all" href="https://github.com/Iliya-Kushnir">
+                <Github color="white" size={18} />
+              </Link>
             </div>
           </div>
           
@@ -29,7 +32,7 @@ const Footer = () => (
               <li><Link href="/" className="hover:text-amber-500">Услуги</Link></li>
               <li><Link href="/portfolio" className="hover:text-amber-500">Портфолио</Link></li>
               <li><Link href="/prices" className="hover:text-amber-500">Прайс-лист</Link></li>
-              <li><Link href="/contacts" className="hover:text-amber-500">Контакты</Link></li>
+              <li><Link href="/privacy" className="hover:text-amber-500">Контакты</Link></li>
             </ul>
           </div>
   
@@ -38,11 +41,11 @@ const Footer = () => (
             <ul className="space-y-4 text-slate-400 text-sm">
               <li className="flex items-start gap-3">
                 <MapPin className="text-amber-500 w-5 h-5 shrink-0" />
-                <span>ул. Владимирская, 15, <br />Киев, Украина, 01001</span>
+                <span>Полтавский Шлях, <br />Харьков, Украина, 31 офисный центр, офис 311</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="text-amber-500 w-5 h-5 shrink-0" />
-                <span>+380 (44) 123-45-67</span>
+                <span>+380 (97) 075-40-94</span>
               </li>
               <li className="flex items-center gap-3">
                 <Clock className="text-amber-500 w-5 h-5 shrink-0" />
@@ -53,10 +56,10 @@ const Footer = () => (
         </div>
         
         <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-slate-500 text-xs gap-4">
-          <p>© 2024 ChronoMaster Elite. Все права защищены.</p>
+          <p>© {new Date().getFullYear()} ChronoMaster Elite. Все права защищены.</p>
           <div className="flex space-x-6">
-            <a href="#" className="hover:text-amber-500">Политика конфиденциальности</a>
-            <a href="#" className="hover:text-amber-500">Условия сервиса</a>
+            <Link href="/privacy" className="hover:text-amber-500">Политика конфиденциальности</Link>
+            <Link href="/privacy" className="hover:text-amber-500">Условия сервиса</Link>
           </div>
         </div>
       </div>

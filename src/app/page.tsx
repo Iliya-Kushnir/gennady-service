@@ -34,43 +34,39 @@ export default function Home() {
     <div className="overflow-hidden">
       {/* Hero Section */}
       <section className="relative h-[90vh] flex items-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1547996160-81dfa63595dd?auto=format&fit=crop&q=80&w=2000" 
-            className="w-full h-full object-cover brightness-[0.3]"
-            alt="Watch repair workshop"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/40 to-transparent"></div>
-        </div>
+  <div className="absolute inset-0 z-0">
+    {/* Сплошной темный слой без градиента */}
+    <div className="absolute inset-0 bg-slate-950/90"></div>
+  </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="max-w-3xl">
-            <span className="inline-block py-1 px-3 bg-amber-600/20 text-amber-500 rounded-sm text-xs font-bold uppercase tracking-widest mb-6 border border-amber-600/30">
-              Элитная мастерская
-            </span>
-            <h1 className="text-5xl md:text-7xl font-serif font-bold text-white mb-6 leading-tight">
-              Ремонт швейцарских часов <span className="text-amber-500">в Киеве</span>
-            </h1>
-            <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-xl leading-relaxed">
-              Мы обеспечиваем безупречное обслуживание часов ведущих мировых мануфактур с сохранением оригинального качества и гарантии.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <a href="#contacts" className="bg-amber-600 hover:bg-amber-700 text-white px-10 py-4 rounded-sm text-sm font-bold uppercase tracking-widest transition-all text-center">
-                Записаться на диагностику
-              </a>
-              <Link href="/prices" className="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white px-10 py-4 rounded-sm text-sm font-bold uppercase tracking-widest transition-all text-center border border-white/20">
-                Смотреть цены
-              </Link>
-            </div>
-          </div>
-        </div>
-        
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce opacity-50">
-          <span className="text-[10px] uppercase tracking-widest">Scroll</span>
-          <div className="w-[1px] h-10 bg-white"></div>
-        </div>
-      </section>
+  <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <div className="max-w-3xl">
+      <span className="inline-block py-1 px-3 bg-amber-600/20 text-amber-500 rounded-sm text-xs font-bold uppercase tracking-widest mb-6 border border-amber-600/30">
+        Элитная мастерская
+      </span>
+      <h1 className="text-5xl md:text-7xl font-serif font-bold text-white mb-6 leading-tight">
+        Ремонт швейцарских часов <span className="text-amber-500">в Киеве</span>
+      </h1>
+      <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-xl leading-relaxed">
+        Мы обеспечиваем безупречное обслуживание часов ведущих мировых мануфактур с сохранением оригинального качества и гарантии.
+      </p>
+      <div className="flex flex-col sm:flex-row gap-4">
+        <a href="#contacts" className="bg-amber-600 hover:bg-amber-700 text-white px-10 py-4 rounded-sm text-sm font-bold uppercase tracking-widest transition-all text-center">
+          Записаться на диагностику
+        </a>
+        <Link href="/prices" className="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white px-10 py-4 rounded-sm text-sm font-bold uppercase tracking-widest transition-all text-center border border-white/20">
+          Смотреть цены
+        </Link>
+      </div>
+    </div>
+  </div>
+  
+  {/* Scroll Indicator */}
+  <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce opacity-50">
+    <span className="text-[10px] text-white uppercase tracking-widest">Scroll</span>
+    <div className="w-[1px] h-10 bg-white"></div>
+  </div>
+</section>
 
       {/* Services Section */}
       <section className="py-24 bg-slate-900" id="services">
@@ -85,7 +81,7 @@ export default function Home() {
             {SERVICES.map((service) => {
               const IconComp = IconMap[service.icon];
               return (
-                <Link href={`/service/${service.id}`} key={service.id} className="group relative bg-slate-800 border border-slate-700 p-8 rounded-sm hover:border-amber-600/50 transition-all hover:-translate-y-2 cursor-pointer">
+                <Link href={`/services/${service.id}`} key={service.id} className="group relative bg-slate-800 border border-slate-700 p-8 rounded-sm hover:border-amber-600/50 transition-all hover:-translate-y-2 cursor-pointer">
                   <div className="mb-6 inline-block p-4 bg-slate-900 rounded-sm text-amber-500 group-hover:bg-amber-600 group-hover:text-white transition-colors">
                     <IconComp size={32} />
                   </div>
@@ -173,11 +169,11 @@ export default function Home() {
                <div className="relative z-10 space-y-10">
                  <div>
                    <h4 className="text-amber-500 font-bold uppercase tracking-widest text-xs mb-4">Наш адрес</h4>
-                   <p className="text-2xl text-white font-serif">ул. Владимирская, 15, Киев</p>
+                   <p className="text-2xl text-white font-serif">Полтавский Шлях, Харьков, Украина, 31 офисный центр, офис 311</p>
                  </div>
                  <div>
                    <h4 className="text-amber-500 font-bold uppercase tracking-widest text-xs mb-4">Свяжитесь с нами</h4>
-                   <p className="text-2xl text-white font-serif">+380 (44) 123-45-67</p>
+                   <p className="text-2xl text-white font-serif">+380 (97) 075-40-94</p>
                    <p className="text-slate-400 mt-2">info@chronomaster.ua</p>
                  </div>
                  <div>

@@ -2,31 +2,52 @@
 
 import { supabase } from "@/lib/supabase";
 
-export const createOrder = async (data: any) => {
-    // 1. Сопоставляем данные из формы с именами колонок в твоем SQL
-    const { name, phone, modelOfWatch, problemDescription } = data;
+export const createOrder = async (formData: FormData) => {
+    // 1. Извлекаем данные из FormData
+    const name = formData.get("name") as string;
+    const phone = formData.get("phone") as string;
+    const modelOfWatch = formData.get("modelOfWatch") as string;
+    const problemDescription = formData.get("problemDescription") as string;
+    const file = formData.get("file") as File | null;
 
+    let imageUrl = null;
+
+    // 2. Если файл есть, загружаем его в Storage
+    if (file && file.size > 0) {
+        const fileExt = file.name.split('.').pop();
+        const fileName = `${Math.random()}.${fileExt}`;
+        const filePath = `${fileName}`;
+
+        const { error: uploadError } = await supabase.storage
+            .from('order-photos') // Твой бакет из SQL запроса
+            .upload(filePath, file);
+
+        if (uploadError) throw new Error("Ошибка загрузки фото: " + uploadError.message);
+
+        // Получаем публичную ссылку
+        const { data: { publicUrl } } = supabase.storage
+            .from('order-photos')
+            .getPublicUrl(filePath);
+        
+        imageUrl = publicUrl;
+    }
+
+    // 3. Создаем запись в таблице
     const { data: newOrder, error } = await supabase
-        .from('orders') // Название таблицы
+        .from('orders')
         .insert([
             {
                 client_name: name,
                 phone: phone,
                 watch_model: modelOfWatch,
                 description: problemDescription,
-                // user_id и status подставятся сами (из DEFAULT в SQL)
+                image_url: imageUrl, // Ссылка на фото
             }
         ])
         .select()
         .single();
 
-        if (error) {
-            // Supabase возвращает разные коды ошибок (например, '23505' для уникальности)
-            if (error.code === '42501') {
-                throw new Error("У вас нет прав на создание заказа (проверьте RLS)");
-            }
-            throw new Error(error.message || "Неизвестная ошибка сервера");
-        }
+    if (error) throw new Error(error.message);
 
-    return newOrder; // Возвращаем созданный объект на фронтенд
+    return newOrder;
 }
