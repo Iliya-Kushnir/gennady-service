@@ -3,6 +3,18 @@ import { PORTFOLIO } from '@/lib/constants';
 import PortfolioItem from '@/components/PortfolioItem/PortfolioItem'; // Импортируем созданный компонент
 
 const PortfolioPage = () => {
+
+
+  const images = [
+    '/first.png',
+    '/second.png',
+    '/third.png',
+    '/fourth.png',
+    '/fifth.png',
+    '/sixth.png',
+    '/seventh.png',
+    '/eighth.png'
+  ];
   return (
     <div className="bg-slate-950 py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -38,12 +50,12 @@ const PortfolioPage = () => {
             <p className="text-slate-500 uppercase tracking-widest text-xs">Процесс создания совершенства</p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
-              <div key={n} className="aspect-square bg-slate-900 overflow-hidden group">
+            {images.map((src, index) => (
+              <div key={index} className="aspect-square bg-slate-900 overflow-hidden group">
                 <img 
-                  src={`https://picsum.photos/600/600?random=${n}`} 
+                  src={`${src}`} 
                   className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-110" 
-                  alt="Workshop" 
+                  alt={`Workshop photo ${index + 1}`}
                 />
               </div>
             ))}

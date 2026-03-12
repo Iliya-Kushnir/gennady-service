@@ -62,12 +62,12 @@ const InformationPage = () => {
             <div className="space-y-4">
               <MapPin className="w-8 h-8 text-amber-600 mx-auto" />
               <p className="font-bold text-white uppercase text-xs tracking-widest">Адрес</p>
-              <p>ул. Владимирская, 15, <br /> Киев, Украина, 01001</p>
+              <p>Полтавский Шлях, <br /> Харьков, Украина, 31 офисный центр, офис 311</p>
             </div>
             <div className="space-y-4">
               <Phone className="w-8 h-8 text-amber-600 mx-auto" />
               <p className="font-bold text-white uppercase text-xs tracking-widest">Связь</p>
-              <p>+380 (44) 123-45-67</p>
+              <p>+380 (97) 075-40-94</p>
               <p>support@gennady-service.com</p>
             </div>
             <div className="space-y-4">

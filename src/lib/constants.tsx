@@ -18,7 +18,7 @@ export const SERVICES: Service[] = [
       'Использование масел Moebius',
       'Тест на точность в 5 положениях'
     ],
-    image: 'https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&q=80&w=800',
+    image: '/repassage.png',
   },
   {
     id: 'polishing',
@@ -34,7 +34,7 @@ export const SERVICES: Service[] = [
       'Удаление глубоких забоин',
       'Чистка браслета в подарок'
     ],
-    image: '/images/polishing.png',
+    image: '/polishing.png',
   },
   {
     id: 'parts',
@@ -50,7 +50,7 @@ export const SERVICES: Service[] = [
       'Проверка герметичности после сборки',
       'Замена всех уплотнителей'
     ],
-    image: 'https://images.unsplash.com/photo-1509048191080-d2984bad6ad5?auto=format&fit=crop&q=80&w=800',
+    image: '/changingParts.png',
   },
   {
     id: 'diagnostics',
@@ -66,7 +66,7 @@ export const SERVICES: Service[] = [
       'Оценка амплитуды баланса',
       'Фотофиксация дефектов'
     ],
-    image: 'https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&q=80&w=800',
+    image: '/diagnostics.png',
   }
 ];
 
@@ -75,16 +75,16 @@ export const PORTFOLIO: PortfolioCase[] = [
     id: '1',
     watchModel: 'Rolex Submariner Date',
     description: 'Восстановление после попадания влаги и полировка.',
-    beforeImage: 'https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?auto=format&fit=crop&q=80&w=800',
-    afterImage: 'https://images.unsplash.com/photo-1522338242992-e1a54906a8da?auto=format&fit=crop&q=80&w=800',
+    beforeImage: '/rolexSubmrinerBefore.png',
+    afterImage: '/rolexSubmariner.png',
     details: ['Полная разборка механизма Caliber 3135', 'Замена анкерного колеса', 'Восстановление герметичности', 'Лазерная наплавка и полировка корпуса']
   },
   {
     id: '2',
     watchModel: 'Omega Speedmaster Professional',
     description: 'Репассаж хронографа с ручным заводом.',
-    beforeImage: 'https://images.unsplash.com/photo-1508685096489-7a669f1bd462?auto=format&fit=crop&q=80&w=800',
-    afterImage: 'https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&q=80&w=800',
+    beforeImage: '/OmegaBefore.png',
+    afterImage: '/OmegaAfter.png',
     details: ['Чистка системы хронографа', 'Регулировка точности до +2 сек/сут', 'Замена хезалитового стекла']
   }
 ];

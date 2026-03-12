@@ -20,6 +20,7 @@ const Header = () => {
               <Link href="/" className="text-sm font-medium text-white hover:text-amber-500 transition-colors">Главная</Link>
               <Link href="/portfolio" className="text-sm font-medium text-white hover:text-amber-500 transition-colors">Портфолио</Link>
               <Link href="/prices" className="text-sm font-medium text-white hover:text-amber-500 transition-colors">Прайс-лист</Link>
+              <Link href="/order" className="text-sm font-medium text-white hover:text-amber-500 transition-colors">Проверка Статуса</Link>
             </nav>
   
             <div className="hidden md:flex items-center">

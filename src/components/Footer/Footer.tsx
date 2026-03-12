@@ -1,5 +1,21 @@
 import Link from "next/link";
-import { Instagram, Facebook, MapPin, Phone, Clock, Github } from "lucide-react";
+import { Instagram, Facebook, MapPin, Phone, Clock, Github,  } from "lucide-react";
+
+const TelegramIcon = ({ size = 18, color = "currentColor" }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke={color}
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M22 2 11 13" />
+    <path d="m22 2-7 20-4-9-9-4 20-7Z" />
+  </svg>
+);
 
 const Footer = () => (
     <footer className="bg-slate-950 border-t border-slate-800 pt-16 pb-8">
@@ -14,11 +30,11 @@ const Footer = () => (
               Профессиональное обслуживание швейцарских часов премиум-класса. Возвращаем точность и блеск вашим любимым механизмам с 2004 года.
             </p>
             <div className="flex space-x-4">
-              <Link href="#" className="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center hover:bg-amber-600 hover:border-amber-600 transition-all">
+              <Link href="https://www.instagram.com/kharkov_watchrepair?igsh=MW9xZzltZTU2cHUxbQ%3D%3D" className="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center hover:bg-amber-600 hover:border-amber-600 transition-all">
                 <Instagram color="white" size={18} />
               </Link>
-              <Link href="#" className="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center hover:bg-amber-600 hover:border-amber-600 transition-all">
-                <Facebook color="white" size={18} />
+              <Link href="https://t.me/GennadiyB1981" className="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center hover:bg-amber-600 hover:border-amber-600 transition-all">
+                <TelegramIcon color="white" size={18} />
               </Link>
               <Link className="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center hover:bg-amber-600 hover:border-amber-600 transition-all" href="https://github.com/Iliya-Kushnir">
                 <Github color="white" size={18} />
