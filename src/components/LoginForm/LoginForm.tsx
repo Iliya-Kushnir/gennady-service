@@ -22,13 +22,15 @@ const LoginForm = () => {
     } = useForm<LoginFormData>();
 
     const { mutate, isPending } = useMutation({
-        mutationFn: loginUser, // Передаем функцию как есть
-        onSuccess: (serverData) => {
-            console.log("Data from server:", serverData);
-            alert("Успешный вход!");
-            reset();
-            router.push("/admin");
-            router.refresh();
+        mutationFn: loginUser,
+        onSuccess: async (serverData) => {
+            // ОБЯЗАТЕЛЬНО: заставляем Next.js перечитать куки
+            router.refresh(); 
+            reset(); // Сбрасываем форму после успешного входа
+            
+            setTimeout(() => {
+                router.push("/admin");
+            }, 100);
         },
         onError: (error: any) => {
             alert(`Ошибка: ${error.message}`);

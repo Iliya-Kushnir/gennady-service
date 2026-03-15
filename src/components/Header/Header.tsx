@@ -39,9 +39,9 @@ const Header = () => {
         {isOpen && (
           <div className="md:hidden bg-slate-900 border-b border-slate-800 animate-in fade-in slide-in-from-top-5 duration-300">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              <Link href="/" className="block px-3 py-4 text-base font-medium border-b border-slate-800">Главная</Link>
-              <Link href="/portfolio" className="block px-3 py-4 text-base font-medium border-b border-slate-800">Портфолио</Link>
-              <Link href="/prices" className="block px-3 py-4 text-base font-medium border-b border-slate-800">Прайс-лист</Link>
+              <Link href="/" className="block px-3 py-4 text-base font-medium border-b border-slate-800 text-white">Главная</Link>
+              <Link href="/portfolio" className="block px-3 py-4 text-base font-medium border-b border-slate-800 text-white">Портфолио</Link>
+              <Link href="/prices" className="block px-3 py-4 text-base font-medium border-b border-slate-800 text-white">Прайс-лист</Link>
               <Link href="/#contacts" className="block px-3 py-4 text-base font-medium text-amber-500">Записаться</Link>
             </div>
           </div>

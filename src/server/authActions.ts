@@ -1,10 +1,12 @@
 "use server";
 
-import { supabase } from "@/lib/supabase";
+import { createClient } from "@/utils/supabase/server"; // Импорт нового клиента
 
 export const loginUser = async (data: any) => {
     const { username, password } = data;
-    const {data: authData, error} = await supabase.auth.signInWithPassword({
+    const supabase = await createClient(); // Создаем клиент прямо здесь
+
+    const { data: authData, error } = await supabase.auth.signInWithPassword({
         email: username.trim(),
         password: password,
     });
@@ -16,3 +18,12 @@ export const loginUser = async (data: any) => {
 
     return authData;
 }
+
+
+import { redirect } from "next/navigation";
+
+export const logoutUser = async () => {
+  const supabase = await createClient();
+  await supabase.auth.signOut();
+  redirect("/login"); // После выхода перекидываем на страницу логина
+};
