@@ -61,11 +61,14 @@ const Footer = () => (
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="text-amber-500 w-5 h-5 shrink-0" />
-                <span>+380 (97) 075-40-94</span>
+                <div className="flex flex-col">
+                  <span>+380 (97) 075-40-94</span>
+                  <span >+380 (95) 739-86-14</span>
+                </div>
               </li>
               <li className="flex items-center gap-3">
                 <Clock className="text-amber-500 w-5 h-5 shrink-0" />
-                <span>Пн-Сб: 10:00 – 19:00</span>
+                <span>Пн-Сб: 12:00 – 18:00</span>
               </li>
             </ul>
           </div>

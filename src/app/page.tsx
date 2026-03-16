@@ -6,6 +6,7 @@ import { Settings, Sparkles, Clock, Hammer, ArrowRight } from 'lucide-react';
 import { SERVICES, PORTFOLIO, REASONS } from "@/lib/constants";
 import { supabase } from "@/lib/supabase"
 import { useEffect } from "react";
+import { Metadata } from "next";
 
 const IconMap: any = {
   Settings,
@@ -13,6 +14,8 @@ const IconMap: any = {
   Clock,
   Hammer,
 };
+
+
 
 export default function Home() {
 
@@ -173,12 +176,15 @@ export default function Home() {
                  </div>
                  <div>
                    <h4 className="text-amber-500 font-bold uppercase tracking-widest text-xs mb-4">Свяжитесь с нами</h4>
-                   <p className="text-2xl text-white font-serif">+380 (97) 075-40-94</p>
+                   <div className="flex flex-col">
+                    <p className="text-2xl text-white font-serif">+380 (97) 075-40-94</p>
+                    <p className="text-2xl text-white font-serif">+380 (95) 739-86-14</p>
+                   </div>
                    <p className="text-slate-400 mt-2">info@chronomaster.ua</p>
                  </div>
                  <div>
                    <h4 className="text-amber-500 font-bold uppercase tracking-widest text-xs mb-4">Режим работы</h4>
-                   <p className="text-lg text-white">Пн – Пт: 10:00 – 19:00</p>
+                   <p className="text-lg text-white">Пн – Пт: 12:00 – 18:00</p>
                    <p className="text-lg text-white">Сб: 11:00 – 17:00</p>
                    <p className="text-slate-400 mt-2">Вс: Выходной</p>
                  </div>

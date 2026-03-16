@@ -68,12 +68,13 @@ const InformationPage = () => {
               <Phone className="w-8 h-8 text-amber-600 mx-auto" />
               <p className="font-bold text-white uppercase text-xs tracking-widest">Связь</p>
               <p>+380 (97) 075-40-94</p>
+              <p>+380 (95) 739-86-14</p>
               <p>support@gennady-service.com</p>
             </div>
             <div className="space-y-4">
               <Clock className="w-8 h-8 text-amber-600 mx-auto" />
               <p className="font-bold text-white uppercase text-xs tracking-widest">График</p>
-              <p>Пн-Сб: 10:00 – 19:00</p>
+              <p>Пн-Сб: 12:00 – 18:00</p>
               <p>Вс: Выходной</p>
             </div>
           </div>

@@ -1,6 +1,12 @@
 import React from 'react';
 import { PORTFOLIO } from '@/lib/constants';
 import PortfolioItem from '@/components/PortfolioItem/PortfolioItem'; // Импортируем созданный компонент
+import { Metadata } from 'next';
+
+export const metadata:Metadata = {
+  title: "Наши работы — Кейсы по ремонту часов в Харькове | Портфолио",
+  description: "Примеры выполненных работ по реставрации, полировке и ремонту элитных часов. Фото До и После от мастеров Gennady Service в Харькове.",
+};
 
 const PortfolioPage = () => {
 
