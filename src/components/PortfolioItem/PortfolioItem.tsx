@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 // Описываем интерфейс данных (можно вынести в отдельный файл types.ts)
 interface PortfolioItemProps {
@@ -25,7 +26,9 @@ const PortfolioItem: React.FC<PortfolioItemProps> = ({
       {/* Сетка с изображениями До/После */}
       <div className="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="relative group">
-          <img 
+          <Image 
+            width={10000}
+            height={10000}
             src={beforeImage} 
             className="w-full aspect-square object-cover rounded-sm border border-slate-800" 
             alt={`${watchModel} - До ремонта`} 
@@ -35,7 +38,9 @@ const PortfolioItem: React.FC<PortfolioItemProps> = ({
           </div>
         </div>
         <div className="relative group">
-          <img 
+          <Image 
+            width={10000}
+            height={10000}
             src={afterImage} 
             className="w-full aspect-square object-cover rounded-sm border border-slate-800" 
             alt={`${watchModel} - После ремонта`} 

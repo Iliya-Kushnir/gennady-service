@@ -5,6 +5,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useDropzone } from "react-dropzone";
 import { createOrder } from "@/server/CreateOrder";
 import { Upload, X } from "lucide-react";
+import Image from "next/image";
 
 type ApplicationFormData = {
     name: string;
@@ -75,7 +76,12 @@ const ApplicationForm = () => {
                 <input {...getInputProps()} />
                 {filePreview ? (
                     <div className="relative inline-block">
-                        <img src={filePreview} alt="Preview" className="h-32 w-32 object-cover rounded border border-slate-700" />
+                        <Image 
+                        width={100000}
+                        height={100000}
+                        src={filePreview} 
+                        alt="Preview" 
+                        className="h-32 w-32 object-cover rounded border border-slate-700" />
                         <button type="button" onClick={(e) => { e.stopPropagation(); setFilePreview(null); setValue("file", null); }} className="absolute -top-2 -right-2 bg-red-500 rounded-full p-1"><X size={12} /></button>
                     </div>
                 ) : (

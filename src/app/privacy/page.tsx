@@ -1,5 +1,6 @@
 import { Shield, FileText, Phone, MapPin, Clock } from 'lucide-react';
 
+
 const InformationPage = () => {
   return (
     <div className="min-h-screen bg-slate-950 text-white py-24 px-4 sm:px-6">
@@ -69,7 +70,7 @@ const InformationPage = () => {
               <p className="font-bold text-white uppercase text-xs tracking-widest">Связь</p>
               <p>+380 (97) 075-40-94</p>
               <p>+380 (95) 739-86-14</p>
-              <p>support@gennady-service.com</p>
+              <p>watchrepair.requests@gmail.com</p>
             </div>
             <div className="space-y-4">
               <Clock className="w-8 h-8 text-amber-600 mx-auto" />

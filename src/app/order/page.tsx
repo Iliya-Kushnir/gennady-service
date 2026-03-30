@@ -68,6 +68,8 @@ const OrderPage = () => {
             <div className="relative h-72 w-full bg-slate-950/50">
               {order.image_url ? (
                 <Image
+                  width={1000000}
+                  height={1000000}
                   src={order.image_url}
                   alt={order.watch_model}
                   fill
@@ -105,7 +107,7 @@ const OrderPage = () => {
                         order.status === 'new' ? 'bg-amber-500' : 
                         order.status === 'in_progress' ? 'bg-blue-500' : 'bg-emerald-500'
                       }`} />
-                      
+
                       <div>
                         <p className="text-[10px] uppercase text-slate-500 font-bold">Текущий статус</p>
                         <p className="text-white font-black uppercase text-xs tracking-tighter">

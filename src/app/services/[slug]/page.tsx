@@ -5,12 +5,15 @@ import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { CheckCircle2, ChevronLeft } from 'lucide-react';
 import { SERVICES } from '@/lib/constants'; // Путь к твоему файлу с массивом
+import Image from 'next/image';
 
 export default function ServicePage() {
   const { slug } = useParams();
 
   // Ищем услугу в массиве по id (который у тебя в массиве заменяет slug)
   const service = SERVICES.find((s) => s.id === slug);
+
+  
 
   if (!service) {
     return (
@@ -63,7 +66,7 @@ export default function ServicePage() {
 
           <div className="lg:w-1/2 space-y-12">
             <div className="aspect-[4/5] bg-slate-900 rounded-sm overflow-hidden border border-slate-800">
-              <img src={service.image} className="w-full h-full object-cover grayscale-[0.2]" alt={service.title} />
+              <Image width={100000} height={1000000} src={service.image} className="w-full h-full object-cover grayscale-[0.2]" alt={service.title} />
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

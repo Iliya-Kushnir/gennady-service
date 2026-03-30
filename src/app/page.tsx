@@ -21,17 +21,23 @@ export default function Home() {
 
   useEffect(() => {
     const checkConnection = async () => {
-      const { data, error } = await supabase.from('orders').select('*')
-
-      if (error) {
-        console.error('❌ Ошибка подключения к Supabase:', error.message)
-      } else {
-        console.log('✅ Данные успешно получены:', data)
+      try {
+        const { data, error } = await supabase.from('orders').select('id').limit(1);
+        
+        if (error) {
+          // Выводим полную ошибку, а не только текст
+          console.error('❌ Ошибка Supabase:', error);
+        } else {
+          console.log('✅ Подключено успешно:', data);
+        }
+      } catch (err) {
+        // Это поймает сетевые ошибки (Load failed)
+        console.error('🌐 Сетевая ошибка (проверь AdBlock/VPN):', err);
       }
-    }
-
-    checkConnection()
-  }, [])
+    };
+  
+    checkConnection();
+  }, []);
 
   return (
     <div className="overflow-hidden">
@@ -48,7 +54,7 @@ export default function Home() {
         Элитная мастерская
       </span>
       <h1 className="text-5xl md:text-7xl font-serif font-bold text-white mb-6 leading-tight">
-        Ремонт швейцарских часов <span className="text-amber-500">в Киеве</span>
+        Ремонт швейцарских часов <span className="text-amber-500">в Харькове</span>
       </h1>
       <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-xl leading-relaxed">
         Мы обеспечиваем безупречное обслуживание часов ведущих мировых мануфактур с сохранением оригинального качества и гарантии.
@@ -120,7 +126,7 @@ export default function Home() {
               <div key={item.id} className="bg-slate-900 border border-slate-800 rounded-sm overflow-hidden group">
                 <div className="flex flex-col md:flex-row h-full">
                   <div className="md:w-1/2 relative h-64 md:h-auto">
-                    <img src={item.afterImage} className="w-full h-full object-cover grayscale-[0.5] group-hover:grayscale-0 transition-all duration-700" alt={item.watchModel} />
+                    <Image width={1000000} height={1000000} src={item.afterImage} className="w-full h-full object-cover grayscale-[0.5] group-hover:grayscale-0 transition-all duration-700" alt={item.watchModel} />
                     <div className="absolute top-4 left-4 bg-amber-600 text-white text-[10px] font-bold uppercase px-2 py-1">После ремонта</div>
                   </div>
                   <div className="md:w-1/2 p-8 flex flex-col justify-center">
@@ -167,7 +173,7 @@ export default function Home() {
             </div>
             <div className="lg:w-1/2 relative bg-slate-800 p-8 md:p-16 flex flex-col justify-center">
                <div className="absolute inset-0 opacity-10">
-                 <img src="https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?auto=format&fit=crop&q=80&w=1200" className="w-full h-full object-cover" />
+                 <Image width={1000000} height={1000000} alt="" src="https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?auto=format&fit=crop&q=80&w=1200" className="w-full h-full object-cover" />
                </div>
                <div className="relative z-10 space-y-10">
                  <div>
@@ -180,7 +186,7 @@ export default function Home() {
                     <p className="text-2xl text-white font-serif">+380 (97) 075-40-94</p>
                     <p className="text-2xl text-white font-serif">+380 (95) 739-86-14</p>
                    </div>
-                   <p className="text-slate-400 mt-2">info@chronomaster.ua</p>
+                   <p className="text-slate-400 mt-2">watchrepair.requests@gmail.com</p>
                  </div>
                  <div>
                    <h4 className="text-amber-500 font-bold uppercase tracking-widest text-xs mb-4">Режим работы</h4>

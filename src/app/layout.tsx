@@ -25,6 +25,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Gennady" }],
   creator: "Gennady Service",
   
+  
   // Настройки для соцсетей (Open Graph)
   openGraph: {
     type: "website",
@@ -45,8 +46,8 @@ export const metadata: Metadata = {
 
   // Иконки
   icons: {
-    icon: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
+    icon: "/favicon.png",
+    apple: "/favicon.png",
   },
 };
 

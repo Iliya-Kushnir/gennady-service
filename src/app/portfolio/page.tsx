@@ -2,6 +2,7 @@ import React from 'react';
 import { PORTFOLIO } from '@/lib/constants';
 import PortfolioItem from '@/components/PortfolioItem/PortfolioItem'; // Импортируем созданный компонент
 import { Metadata } from 'next';
+import Image from 'next/image';
 
 export const metadata:Metadata = {
   title: "Наши работы — Кейсы по ремонту часов в Харькове | Портфолио",
@@ -58,7 +59,9 @@ const PortfolioPage = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {images.map((src, index) => (
               <div key={index} className="aspect-square bg-slate-900 overflow-hidden group">
-                <img 
+                <Image 
+                  width={10000}
+                  height={10000}
                   src={`${src}`} 
                   className="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-110" 
                   alt={`Workshop photo ${index + 1}`}
