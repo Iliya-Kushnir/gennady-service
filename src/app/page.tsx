@@ -53,7 +53,7 @@ export default function Home() {
       <span className="inline-block py-1 px-3 bg-amber-600/20 text-amber-500 rounded-sm text-xs font-bold uppercase tracking-widest mb-6 border border-amber-600/30">
         Элитная мастерская
       </span>
-      <h1 className="text-5xl md:text-7xl font-serif font-bold text-white mb-6 leading-tight">
+      <h1 className="text-3xl sm:text-5xl md:text-7xl font-serif font-bold text-white mb-6 leading-tight break-words">
         Ремонт швейцарских часов <span className="text-amber-500">в Харькове</span>
       </h1>
       <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-xl leading-relaxed">

@@ -8,9 +8,9 @@ const InformationPage = () => {
       <div className="max-w-4xl mx-auto text-center">
         
         {/* РАЗДЕЛ 1: Политика конфиденциальности */}
-        <section className="mb-24">
+        <section className="mb-24 px-2">
           <Shield className="w-12 h-12 text-amber-500 mx-auto mb-6" />
-          <h1 className="text-3xl md:text-5xl font-serif mb-8 text-amber-500 uppercase tracking-widest">
+          <h1 className="text-3xl md:text-5xl font-serif mb-8 text-amber-500 uppercase tracking-widest break-words leading-tight">
             Политика конфиденциальности
           </h1>
           
