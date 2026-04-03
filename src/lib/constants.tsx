@@ -133,7 +133,7 @@ export const PRICES: PriceItem[] = [
 
 export const REASONS = [
   { icon: <Award className="w-10 h-10 text-amber-500" />, title: '20 лет опыта', text: 'Наши мастера обучались в Швейцарии на фабриках ведущих брендов.' },
-  { icon: <Shield className="w-10 h-10 text-amber-500" />, title: 'Гарантия 2 года', text: 'Мы предоставляем официальную гарантию на все виды работ и запчастей.' },
+  { icon: <Shield className="w-10 h-10 text-amber-500" />, title: 'Гарантия 1 года', text: 'Мы предоставляем официальную гарантию на все виды работ и запчастей.' },
   { icon: <Settings className="w-10 h-10 text-amber-500" />, title: 'Оригинальные детали', text: 'Никаких копий. Только сертифицированные комплектующие.' },
   { icon: <Sparkles className="w-10 h-10 text-amber-500" />, title: 'Swiss Quality', text: 'Используем оборудование Witschi, Bergeon и Elma.' },
 ];

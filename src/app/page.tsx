@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import ApplicationForm from "@/components/ApplicationForm/AppplicationForm";
-import { Settings, Sparkles, Clock, Hammer, ArrowRight, Truck } from 'lucide-react'; // Добавил Truck
+import { Settings, Sparkles, Clock, Hammer, ArrowRight, Truck, MapPin } from 'lucide-react';
 import { SERVICES, PORTFOLIO, REASONS } from "@/lib/constants";
 import { supabase } from "@/lib/supabase"
 import { useEffect } from "react";
@@ -20,6 +20,7 @@ export default function Home() {
     const checkConnection = async () => {
       try {
         const { data, error } = await supabase.from('orders').select('id').limit(1);
+        
         if (error) {
           console.error('❌ Ошибка Supabase:', error);
         } else {
@@ -29,13 +30,14 @@ export default function Home() {
         console.error('🌐 Сетевая ошибка (проверь AdBlock/VPN):', err);
       }
     };
+  
     checkConnection();
   }, []);
 
   return (
     <div className="overflow-hidden">
       {/* Hero Section */}
-      <section className="relative h-[90vh] flex items-center overflow-hidden">
+      <section className="relative h-[95vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-slate-950/90"></div>
         </div>
@@ -48,13 +50,27 @@ export default function Home() {
             <h1 className="text-3xl sm:text-5xl md:text-7xl font-serif font-bold text-white mb-6 leading-tight break-words">
               Ремонт швейцарских и <span className="text-amber-500">советских часов</span>
             </h1>
-            <p className="text-lg md:text-xl text-slate-300 mb-6 max-w-xl leading-relaxed">
-              Восстановление механизмов любой сложности: от элитных наручных до антикварных напольных и настенных часов.
+            
+            <p className="text-lg md:text-xl text-slate-300 mb-4 max-w-xl leading-relaxed">
+              Профессиональное обслуживание механизмов любой сложности с сохранением оригинального качества и гарантии.
             </p>
-            {/* Добавленная плашка про типы часов */}
-            <p className="text-sm text-amber-500/80 font-medium mb-10 uppercase tracking-wider">
-              Напольные • Настольные • Настенные • Карманные
-            </p>
+
+            {/* Акцент на типах часов */}
+            <div className="flex flex-wrap gap-x-4 gap-y-2 mb-6 text-amber-500/90 text-sm font-bold uppercase tracking-widest">
+              <span>Напольные</span>
+              <span className="text-slate-700">•</span>
+              <span>Настольные</span>
+              <span className="text-slate-700">•</span>
+              <span>Настенные</span>
+              <span className="text-slate-700">•</span>
+              <span>Карманные</span>
+            </div>
+
+            {/* Акцент на доставке по Украине */}
+            <div className="flex items-center gap-3 text-slate-100 bg-white/5 border border-white/10 w-fit px-4 py-2 rounded-sm mb-10">
+              <Truck size={20} className="text-amber-500" />
+              <span className="text-sm font-medium">Принимаем заказы со всей Украины по почте</span>
+            </div>
             
             <div className="flex flex-col sm:flex-row gap-4">
               <a href="#contacts" className="bg-amber-600 hover:bg-amber-700 text-white px-10 py-4 rounded-sm text-sm font-bold uppercase tracking-widest transition-all text-center">
@@ -67,6 +83,7 @@ export default function Home() {
           </div>
         </div>
         
+        {/* Scroll Indicator */}
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce opacity-50">
           <span className="text-[10px] text-white uppercase tracking-widest">Scroll</span>
           <div className="w-[1px] h-10 bg-white"></div>
@@ -104,7 +121,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Portfolio Highlight - Без изменений */}
+      {/* Portfolio Highlight */}
       <section className="py-24 bg-slate-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
@@ -174,13 +191,17 @@ export default function Home() {
                <div className="relative z-10 space-y-10">
                  <div>
                    <h4 className="text-amber-500 font-bold uppercase tracking-widest text-xs mb-4 flex items-center gap-2">
-                     <Truck size={14} /> Работаем по Украине
+                     <Truck size={14} /> Заказы по всей Украине
                    </h4>
-                   <p className="text-lg text-slate-300 leading-relaxed mb-4">
-                     Принимаем заказы со всей страны через <span className="text-white font-bold italic">Новую Почту</span>. Безопасная доставка и страховка вашего изделия.
+                   <p className="text-xl text-white font-serif mb-2 leading-tight">
+                     Принимаем часы на ремонт через <span className="text-amber-500">Новую Почту</span>
                    </p>
-                   <h4 className="text-amber-500 font-bold uppercase tracking-widest text-xs mb-2">Наш адрес</h4>
-                   <p className="text-xl text-white font-serif">Полтавский Шлях, Харьков, Украина, 31 офисный центр, офис 311</p>
+                   <p className="text-sm text-slate-400 mb-6 italic">Безопасная пересылка с полной страховкой содержимого.</p>
+                   
+                   <h4 className="text-amber-500 font-bold uppercase tracking-widest text-xs mb-4 flex items-center gap-2">
+                     <MapPin size={14} /> Наш адрес
+                   </h4>
+                   <p className="text-xl text-white font-serif leading-relaxed">Полтавский Шлях, Харьков, Украина, 31 офисный центр, офис 311</p>
                  </div>
                  <div>
                    <h4 className="text-amber-500 font-bold uppercase tracking-widest text-xs mb-4">Свяжитесь с нами</h4>
