@@ -2,11 +2,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import ApplicationForm from "@/components/ApplicationForm/AppplicationForm";
-import { Settings, Sparkles, Clock, Hammer, ArrowRight } from 'lucide-react';
+import { Settings, Sparkles, Clock, Hammer, ArrowRight, Truck } from 'lucide-react'; // Добавил Truck
 import { SERVICES, PORTFOLIO, REASONS } from "@/lib/constants";
 import { supabase } from "@/lib/supabase"
 import { useEffect } from "react";
-import { Metadata } from "next";
 
 const IconMap: any = {
   Settings,
@@ -15,27 +14,21 @@ const IconMap: any = {
   Hammer,
 };
 
-
-
 export default function Home() {
 
   useEffect(() => {
     const checkConnection = async () => {
       try {
         const { data, error } = await supabase.from('orders').select('id').limit(1);
-        
         if (error) {
-          // Выводим полную ошибку, а не только текст
           console.error('❌ Ошибка Supabase:', error);
         } else {
           console.log('✅ Подключено успешно:', data);
         }
       } catch (err) {
-        // Это поймает сетевые ошибки (Load failed)
         console.error('🌐 Сетевая ошибка (проверь AdBlock/VPN):', err);
       }
     };
-  
     checkConnection();
   }, []);
 
@@ -43,39 +36,42 @@ export default function Home() {
     <div className="overflow-hidden">
       {/* Hero Section */}
       <section className="relative h-[90vh] flex items-center overflow-hidden">
-  <div className="absolute inset-0 z-0">
-    {/* Сплошной темный слой без градиента */}
-    <div className="absolute inset-0 bg-slate-950/90"></div>
-  </div>
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-slate-950/90"></div>
+        </div>
 
-  <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-    <div className="max-w-3xl">
-      <span className="inline-block py-1 px-3 bg-amber-600/20 text-amber-500 rounded-sm text-xs font-bold uppercase tracking-widest mb-6 border border-amber-600/30">
-        Элитная мастерская
-      </span>
-      <h1 className="text-3xl sm:text-5xl md:text-7xl font-serif font-bold text-white mb-6 leading-tight break-words">
-        Ремонт швейцарских часов <span className="text-amber-500">в Харькове</span>
-      </h1>
-      <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-xl leading-relaxed">
-        Мы обеспечиваем безупречное обслуживание часов ведущих мировых мануфактур с сохранением оригинального качества и гарантии.
-      </p>
-      <div className="flex flex-col sm:flex-row gap-4">
-        <a href="#contacts" className="bg-amber-600 hover:bg-amber-700 text-white px-10 py-4 rounded-sm text-sm font-bold uppercase tracking-widest transition-all text-center">
-          Записаться на диагностику
-        </a>
-        <Link href="/prices" className="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white px-10 py-4 rounded-sm text-sm font-bold uppercase tracking-widest transition-all text-center border border-white/20">
-          Смотреть цены
-        </Link>
-      </div>
-    </div>
-  </div>
-  
-  {/* Scroll Indicator */}
-  <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce opacity-50">
-    <span className="text-[10px] text-white uppercase tracking-widest">Scroll</span>
-    <div className="w-[1px] h-10 bg-white"></div>
-  </div>
-</section>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="max-w-3xl">
+            <span className="inline-block py-1 px-3 bg-amber-600/20 text-amber-500 rounded-sm text-xs font-bold uppercase tracking-widest mb-6 border border-amber-600/30">
+              Элитная мастерская • Работаем по всей Украине
+            </span>
+            <h1 className="text-3xl sm:text-5xl md:text-7xl font-serif font-bold text-white mb-6 leading-tight break-words">
+              Ремонт швейцарских и <span className="text-amber-500">советских часов</span>
+            </h1>
+            <p className="text-lg md:text-xl text-slate-300 mb-6 max-w-xl leading-relaxed">
+              Восстановление механизмов любой сложности: от элитных наручных до антикварных напольных и настенных часов.
+            </p>
+            {/* Добавленная плашка про типы часов */}
+            <p className="text-sm text-amber-500/80 font-medium mb-10 uppercase tracking-wider">
+              Напольные • Настольные • Настенные • Карманные
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4">
+              <a href="#contacts" className="bg-amber-600 hover:bg-amber-700 text-white px-10 py-4 rounded-sm text-sm font-bold uppercase tracking-widest transition-all text-center">
+                Записаться на диагностику
+              </a>
+              <Link href="/prices" className="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white px-10 py-4 rounded-sm text-sm font-bold uppercase tracking-widest transition-all text-center border border-white/20">
+                Смотреть цены
+              </Link>
+            </div>
+          </div>
+        </div>
+        
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce opacity-50">
+          <span className="text-[10px] text-white uppercase tracking-widest">Scroll</span>
+          <div className="w-[1px] h-10 bg-white"></div>
+        </div>
+      </section>
 
       {/* Services Section */}
       <section className="py-24 bg-slate-900" id="services">
@@ -108,7 +104,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Portfolio Highlight */}
+      {/* Portfolio Highlight - Без изменений */}
       <section className="py-24 bg-slate-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
@@ -126,7 +122,7 @@ export default function Home() {
               <div key={item.id} className="bg-slate-900 border border-slate-800 rounded-sm overflow-hidden group">
                 <div className="flex flex-col md:flex-row h-full">
                   <div className="md:w-1/2 relative h-64 md:h-auto">
-                    <Image width={1000000} height={1000000} src={item.afterImage} className="w-full h-full object-cover grayscale-[0.5] group-hover:grayscale-0 transition-all duration-700" alt={item.watchModel} />
+                    <Image width={1000} height={1000} src={item.afterImage} className="w-full h-full object-cover grayscale-[0.5] group-hover:grayscale-0 transition-all duration-700" alt={item.watchModel} />
                     <div className="absolute top-4 left-4 bg-amber-600 text-white text-[10px] font-bold uppercase px-2 py-1">После ремонта</div>
                   </div>
                   <div className="md:w-1/2 p-8 flex flex-col justify-center">
@@ -173,12 +169,18 @@ export default function Home() {
             </div>
             <div className="lg:w-1/2 relative bg-slate-800 p-8 md:p-16 flex flex-col justify-center">
                <div className="absolute inset-0 opacity-10">
-                 <Image width={1000000} height={1000000} alt="" src="https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?auto=format&fit=crop&q=80&w=1200" className="w-full h-full object-cover" />
+                 <Image width={1200} height={800} alt="" src="https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?auto=format&fit=crop&q=80&w=1200" className="w-full h-full object-cover" />
                </div>
                <div className="relative z-10 space-y-10">
                  <div>
-                   <h4 className="text-amber-500 font-bold uppercase tracking-widest text-xs mb-4">Наш адрес</h4>
-                   <p className="text-2xl text-white font-serif">Полтавский Шлях, Харьков, Украина, 31 офисный центр, офис 311</p>
+                   <h4 className="text-amber-500 font-bold uppercase tracking-widest text-xs mb-4 flex items-center gap-2">
+                     <Truck size={14} /> Работаем по Украине
+                   </h4>
+                   <p className="text-lg text-slate-300 leading-relaxed mb-4">
+                     Принимаем заказы со всей страны через <span className="text-white font-bold italic">Новую Почту</span>. Безопасная доставка и страховка вашего изделия.
+                   </p>
+                   <h4 className="text-amber-500 font-bold uppercase tracking-widest text-xs mb-2">Наш адрес</h4>
+                   <p className="text-xl text-white font-serif">Полтавский Шлях, Харьков, Украина, 31 офисный центр, офис 311</p>
                  </div>
                  <div>
                    <h4 className="text-amber-500 font-bold uppercase tracking-widest text-xs mb-4">Свяжитесь с нами</h4>

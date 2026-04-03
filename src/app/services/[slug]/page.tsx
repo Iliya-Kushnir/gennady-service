@@ -56,7 +56,7 @@ export default function ServicePage() {
                     {!service.features && (
                     <li className="flex items-start gap-3 text-slate-400">
                         <CheckCircle2 className="text-amber-500 w-5 h-5 shrink-0" />
-                        <span>Гарантия на работы от 12 до 24 месяцев</span>
+                        <span>Гарантия на работы от 3 до 12 месяцев</span>
                     </li>
                     )}
                 </ul>
