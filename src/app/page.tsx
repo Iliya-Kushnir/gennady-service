@@ -48,7 +48,7 @@ export default function Home() {
               Элитная мастерская • Работаем по всей Украине
             </span>
             <h1 className="text-3xl sm:text-5xl md:text-7xl font-serif font-bold text-white mb-6 leading-tight break-words">
-              Ремонт швейцарских и <span className="text-amber-500">советских часов</span>
+              Ремонт швейцарских, японских, немецких и <span className="text-amber-500">советских часов</span>
             </h1>
             
             <p className="text-lg md:text-xl text-slate-300 mb-4 max-w-xl leading-relaxed">
