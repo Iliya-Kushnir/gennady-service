@@ -4,11 +4,18 @@ import { supabase } from "@/lib/supabase";
 
 // 1. Вспомогательная функция (оставляем её вне основного экшена)
 async function sendSmsNotification(phone: string, orderId: string, name: string) {
-    const apiKey = process.env.NEXT_PUBLIC_ALPHASMS_API_KEY;
+    // Получаем ключ напрямую (убедись, что сервер был перезапущен после добавления в .env.local)
+    const apiKey = process.env.ALPHASMS_API_KEY; 
+
+    if (!apiKey) {
+        console.error("КРИТИЧЕСКАЯ ОШИБКА: Ключ API не найден в переменных окружения!");
+        return;
+    }
+
+    // Очищаем телефон и добавляем 38, если ввели 10 цифр
     let cleanPhone = phone.replace(/\D/g, ''); 
     if (cleanPhone.length === 10) cleanPhone = `38${cleanPhone}`;
 
-    const shortId = orderId.slice(0, 8).toUpperCase();
 
     try {
         const response = await fetch('https://alphasms.ua/api/json.php', {
@@ -17,27 +24,27 @@ async function sendSmsNotification(phone: string, orderId: string, name: string)
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                auth: apiKey,
+                auth: apiKey, // Передаем просто строкой!
                 data: [
                     {
                         type: "sms",
-                        id: Math.floor(Math.random() * 100000), // Случайное число для ID сообщения
-                        phone: cleanPhone,                      // ТУТ БЫЛА ОШИБКА (нужно именно 'phone')
-                        sms_signature: "SMSTest",                // Твоя подпись из кабинета
-                        sms_message: `Gennady Service: Привет, ${name}! Заказ №${shortId} принят.`
+                        id: Date.now(), // Уникальный ID из времени (лучше, чем рандом)
+                        phone: Number(cleanPhone), // AlphaSMS любит, когда телефон числом
+                        sms_signature: "SMARTTEST",  // ВАЖНО: это имя должно быть одобрено в кабинете!
+                        sms_message: `Gennady Service: Привет, ${name}! Заказ №${orderId} принят.`
                     }
                 ]
             }),
         });
 
-        console.log("Ответ от TurboSMS:", JSON.stringify(response, null, 2));
-
         const result = await response.json();
-        console.log("AlphaSMS Response:", result.data);
+        
+        // Логируем полный ответ, чтобы точно видеть, что происходит
+        console.log("FULL ALPHASMS RESPONSE:", JSON.stringify(result, null, 2));
         
         return result;
     } catch (e) {
-        console.error("SMS Error:", e);
+        console.error("SMS Network Error:", e);
     }
 }
 
