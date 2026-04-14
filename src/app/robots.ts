@@ -5,8 +5,9 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/admin', '/login'], // Скрываем админку от поисковиков
+      disallow: ['/admin', '/login'],
     },
-    sitemap: 'https://gennady-service.vercel.app/sitemap.xml', // Замени на свой домен
+    // Указываем именно основной домен
+    sitemap: 'https://watch-repair.com.ua/sitemap.xml',
   };
 }
