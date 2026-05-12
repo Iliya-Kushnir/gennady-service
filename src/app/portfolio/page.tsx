@@ -1,12 +1,25 @@
 import React from 'react';
 import { PORTFOLIO } from '@/lib/constants';
 import PortfolioItem from '@/components/PortfolioItem/PortfolioItem'; // Импортируем созданный компонент
-import { Metadata } from 'next';
 import Image from 'next/image';
+import { Metadata } from 'next';
 
-export const metadata:Metadata = {
-  title: "Наши работы — Кейсы по ремонту часов в Харькове | Портфолио",
-  description: "Примеры выполненных работ по реставрации, полировке и ремонту элитных часов. Фото До и После от мастеров Gennady Service в Харькове.",
+export const metadata: Metadata = {
+  title: "Наши работы: Фото До и После ремонта часов в Харькове | Gennady Service",
+  description: "Посмотрите реальные примеры реставрации, полировки и сложного ремонта швейцарских, советских и элитных часов. Наше портфолио говорит само за себя.",
+  keywords: [
+    "реставрация часов фото Харьков", 
+    "ремонт часов до и после", 
+    "полировка часов результаты", 
+    "портфолио часового мастера", 
+    "восстановление циферблата часов"
+  ],
+  openGraph: {
+    title: "Портфолио ремонта часов — До и После | Gennady Service",
+    description: "Оцените качество нашей работы: от полировки корпуса до полного восстановления сложных часовых механизмов.",
+    type: "website",
+    locale: "ru_UA",
+  }
 };
 
 const PortfolioPage = () => {

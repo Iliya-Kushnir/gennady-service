@@ -1,7 +1,6 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // Меняем на основной домен
   const baseUrl = 'https://watch-repair.com.ua';
 
   return [
