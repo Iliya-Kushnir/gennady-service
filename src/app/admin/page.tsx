@@ -21,7 +21,6 @@ import {
 import { logoutUser } from "@/server/authActions";
 import { useRouter } from "next/navigation";
 
-// Библиотека графиков
 import { 
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, 
   ResponsiveContainer, AreaChart, Area, Cell, PieChart, Pie 
@@ -36,11 +35,11 @@ export default function AdminPage() {
     queryFn: getAllOrders,
   });
 
-// Внутри AdminPage
+
 const statusMutation = useMutation({
-    // Изменяем тип здесь: добавляем price как необязательную строку или число
+  
     mutationFn: ({ id, status, price }: { id: string; status?: string; price?: string | number }) => 
-      updateOrderStatus(id, { status, price }), // Передаем объект с изменениями
+      updateOrderStatus(id, { status, price }), 
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["admin-orders"] });
     },
@@ -60,7 +59,7 @@ const statusMutation = useMutation({
     );
   }
 
-  // --- ЛОГИКА СТАТИСТИКИ ---
+
   const stats = {
     new: orders?.filter((o: any) => o.status === 'new').length || 0,
     inProgress: orders?.filter((o: any) => o.status === 'in_progress').length || 0,
@@ -68,13 +67,12 @@ const statusMutation = useMutation({
     revenue: orders?.reduce((acc: number, o: any) => acc + (Number(o.price) || 0), 0) || 0,
   };
 
-  // Данные для графика (группировка по датам)
   const chartData = orders?.slice(0, 7).map((o: any) => ({
     name: new Date(o.created_at).toLocaleDateString('ru-RU', { day: 'numeric', month: 'short' }),
     income: Number(o.price) || 0,
   })).reverse();
 
-  // Данные для круговой диаграммы
+
   const pieData = [
     { name: 'Новые', value: stats.new, color: '#d97706' },
     { name: 'В работе', value: stats.inProgress, color: '#2563eb' },
@@ -154,7 +152,7 @@ const statusMutation = useMutation({
                             type="number"
                             defaultValue={order.price || 0}
                             onBlur={(e) => {
-                                // Когда Геннадий уводит курсор с поля — цена сохраняется в базу
+                               
                                 const newPrice = e.target.value;
                                 statusMutation.mutate({ id: order.id, price: newPrice }); 
                             }}
@@ -278,7 +276,7 @@ const statusMutation = useMutation({
   );
 }
 
-// Вспомогательный компонент для карточек статистики
+
 function StatCard({ title, value, icon, isHighlight = false }: any) {
   return (
     <div className={`p-6 rounded-xl border transition-all hover:scale-[1.02] duration-300 ${
