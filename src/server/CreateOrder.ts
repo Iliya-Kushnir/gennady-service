@@ -30,7 +30,7 @@ async function sendSmsNotification(phone: string, orderId: string, name: string)
                         type: "sms",
                         id: Date.now(), // Уникальный ID из времени (лучше, чем рандом)
                         phone: Number(cleanPhone), // AlphaSMS любит, когда телефон числом
-                        sms_signature: "SMARTTEST",  // ВАЖНО: это имя должно быть одобрено в кабинете!
+                        sms_signature: "Remont",  // ВАЖНО: это имя должно быть одобрено в кабинете!
                         sms_message: `Gennady Service: Привет, ${name}! Заказ №${orderId} принят.`
                     }
                 ]

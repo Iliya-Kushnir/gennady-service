@@ -7,7 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/admin', '/login'],
     },
-    // Указываем именно основной домен
     sitemap: 'https://watch-repair.com.ua/sitemap.xml',
   };
 }

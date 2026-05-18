@@ -8,7 +8,7 @@ export async function middleware(request: NextRequest) {
     },
   })
 
-  // Создаем клиент Supabase для Middleware
+
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
@@ -30,10 +30,10 @@ export async function middleware(request: NextRequest) {
     }
   )
 
-  // Проверяем сессию
+
   const { data: { user } } = await supabase.auth.getUser()
 
-  // Если заходим в админку без авторизации — на логин
+
 
   if (request.nextUrl.pathname.startsWith('/admin') && !user) {
     return NextResponse.redirect(new URL('/login', request.url))

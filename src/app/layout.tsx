@@ -7,7 +7,7 @@ import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
-  subsets: ["latin", "cyrillic"], // Обязательно добавляем кириллицу для правильного отображения шрифта
+  subsets: ["latin", "cyrillic"], 
 });
 
 const geistMono = Geist_Mono({
@@ -16,15 +16,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  // Расширяем Title: охватываем и Харьков, и все типы часов
+
   title: {
     default: "Ремонт часов в Харькове — Швейцарские, советские, наручные | Gennady Service",
     template: "%s | Gennady Service Харьков"
   },
-  // Делаем Description привлекательным для всех клиентов
+
   description: "Профессиональный ремонт всех видов часов в Харькове: швейцарские, японские, советские, механические и кварцевые. Репассаж, полировка, гарантия мастера.",
   
-  // Максимально расширяем семантическое ядро (ключевые слова)
   keywords: [
     "ремонт часов Харьков", 
     "мастерская часов Харьков", 
@@ -40,15 +39,15 @@ export const metadata: Metadata = {
   authors: [{ name: "Gennady" }],
   creator: "Gennady Service",
   
-  // Указываем канонический URL для избежания дублей страниц
+
   alternates: {
     canonical: "https://gennady-service.vercel.app",
   },
   
-  // Настройки для соцсетей (Open Graph)
+
   openGraph: {
     type: "website",
-    locale: "ru_UA", // Правильнее указать русский язык для Украины
+    locale: "ru_UA", 
     url: "https://gennady-service.vercel.app",
     title: "Gennady Service — Профессиональный ремонт часов в Харькове",
     description: "Ремонт любых часов: от советской классики до швейцарских хронографов. Вернем вашим часам идеальный ход! Проверьте статус заказа онлайн.",
@@ -63,7 +62,7 @@ export const metadata: Metadata = {
     ],
   },
 
-  // Иконки
+
   icons: {
     icon: "/favicon.png",
     apple: "/favicon.png",
@@ -76,7 +75,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // МЕНЯЕМ lang="en" на lang="ru" (или "uk", если сайт на украинском)
+    
     <html lang="ru">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
@@ -84,13 +83,13 @@ export default function RootLayout({
         <ReactQueryProvider>
           <Header />
             {children}
-            {/* Улучшенная микроразметка для локального бизнеса */}
+
             <script
               type="application/ld+json"
               dangerouslySetInnerHTML={{
                 __html: JSON.stringify({
                   "@context": "https://schema.org",
-                  "@type": "LocalBusiness", // Правильный тип
+                  "@type": "LocalBusiness", 
                   "name": "Gennady Service - Ремонт часов",
                   "image": "https://gennady-service.vercel.app/og-image.jpg",
                   "description": "Профессиональная мастерская по ремонту швейцарских, советских и японских часов в Харькове.",
@@ -102,12 +101,12 @@ export default function RootLayout({
                   },
                   "geo": {
                     "@type": "GeoCoordinates",
-                    "latitude": "50.0011", // Замените на ваши
+                    "latitude": "50.0011", 
                     "longitude": "36.2344"
                   },
                   "url": "https://gennady-service.vercel.app",
-                  "telephone": "+380XXXXXXXXX", // Обязательно укажите телефон
-                  "priceRange": "$$", // Подсказывает Google, что это коммерческая услуга
+                  "telephone": "+380XXXXXXXXX", 
+                  "priceRange": "$$", 
                   "openingHoursSpecification": [
                     {
                       "@type": "OpeningHoursSpecification",

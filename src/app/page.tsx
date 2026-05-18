@@ -36,7 +36,7 @@ export default function Home() {
 
   return (
     <div className="overflow-hidden">
-      {/* Hero Section */}
+
       <section className="relative h-[95vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-slate-950/90"></div>
