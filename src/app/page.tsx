@@ -1,11 +1,10 @@
-"use client";
 import Image from "next/image";
 import Link from "next/link";
-import ApplicationForm from "@/components/ApplicationForm/AppplicationForm";
+// import ApplicationForm from "@/components/ApplicationForm/AppplicationForm";
 import { Settings, Sparkles, Clock, Hammer, ArrowRight, Truck, MapPin } from 'lucide-react';
 import { SERVICES, PORTFOLIO, REASONS } from "@/lib/constants";
-import { supabase } from "@/lib/supabase"
-import { useEffect } from "react";
+import SupabaseCheck from "@/components/CheckSupabase/SupabaseCheck";
+import dynamic from "next/dynamic";
 
 const IconMap: any = {
   Settings,
@@ -14,29 +13,28 @@ const IconMap: any = {
   Hammer,
 };
 
+const ApplicationForm = dynamic(
+  () => import("@/components/ApplicationForm/AppplicationForm"), 
+  {
+    // Пока скачивается код (Zod, RHF и сама форма), показываем красивую заглушку
+    loading: () => (
+      <div className="w-full h-[350px] bg-slate-800 animate-pulse rounded-sm flex flex-col items-center justify-center border border-slate-700">
+        <div className="w-8 h-8 border-2 border-amber-600 border-t-transparent rounded-full animate-spin mb-4"></div>
+        <span className="text-slate-400 text-sm">Загрузка формы...</span>
+      </div>
+    ),
+    // 4. Отключаем серверный рендеринг для формы (Опционально, но очень полезно)
+    ssr: false 
+  }
+);
+
 export default function Home() {
 
-  useEffect(() => {
-    const checkConnection = async () => {
-      try {
-        const { data, error } = await supabase.from('orders').select('id').limit(1);
-        
-        if (error) {
-          console.error('❌ Ошибка Supabase:', error);
-        } else {
-          console.log('✅ Подключено успешно:', data);
-        }
-      } catch (err) {
-        console.error('🌐 Сетевая ошибка (проверь AdBlock/VPN):', err);
-      }
-    };
-  
-    checkConnection();
-  }, []);
+
 
   return (
     <div className="overflow-hidden">
-
+      <SupabaseCheck />
       <section className="relative h-[95vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-slate-950/90"></div>

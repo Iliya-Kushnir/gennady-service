@@ -56,7 +56,7 @@ const ApplicationForm = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6"  >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                     <label className="block text-[10px] uppercase font-bold text-slate-500 mb-2 tracking-widest">Ваше имя</label>
