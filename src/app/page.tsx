@@ -16,15 +16,13 @@ const IconMap: any = {
 const ApplicationForm = dynamic(
   () => import("@/components/ApplicationForm/AppplicationForm"), 
   {
-    // Пока скачивается код (Zod, RHF и сама форма), показываем красивую заглушку
+    // Оставляем только красивую загрузку, ssr: false убираем!
     loading: () => (
       <div className="w-full h-[350px] bg-slate-800 animate-pulse rounded-sm flex flex-col items-center justify-center border border-slate-700">
         <div className="w-8 h-8 border-2 border-amber-600 border-t-transparent rounded-full animate-spin mb-4"></div>
         <span className="text-slate-400 text-sm">Загрузка формы...</span>
       </div>
-    ),
-    // 4. Отключаем серверный рендеринг для формы (Опционально, но очень полезно)
-    ssr: false 
+    )
   }
 );
 
